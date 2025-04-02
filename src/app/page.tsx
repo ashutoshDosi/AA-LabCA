@@ -1,8 +1,5 @@
 'use client'
-import Image from "next/image";
 import QuickSortVisualizer from "./components/QuickSortVisualizer";
-import Head from "next/head";
-import { use, useEffect } from "react";
 
 export default function Home() {
   return (
