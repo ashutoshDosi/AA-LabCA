@@ -6,6 +6,7 @@ const QuickSortVisualizer = () => {
   const [sorting, setSorting] = useState(false);
   const [pivotIndex, setPivotIndex] = useState<number | null>(null);
   const [compareIndex, setCompareIndex] = useState<number | null>(null);
+  const [viewMode, setViewMode] = useState<'array' | 'bar'>('array');
 
   useEffect(() => {
     resetArray();
@@ -58,15 +59,33 @@ const QuickSortVisualizer = () => {
 
   return (
     <div className="flex flex-col items-center space-y-4">
-      <div className="flex justify-center items-center border-2 border-gray-400 p-4 rounded-lg">
-        {array.map((value, idx) => (
-          <span
-            key={idx}
-            className={`flex justify-center items-center w-12 h-12 border border-gray-500 rounded-md mx-1 text-lg font-bold text-black ${idx === pivotIndex ? 'bg-red-500' : idx === compareIndex ? 'bg-yellow-500' : 'bg-gray-200'}`}
-          >
-            {value}
-          </span>
-        ))}
+      <div className="flex space-x-2">
+        <Button onClick={() => setViewMode('array')}>Array View</Button>
+        <Button onClick={() => setViewMode('bar')}>Bar View</Button>
+      </div>
+      <div className="flex justify-center items-center  border-gray-400 p-4 rounded-lg">
+        {viewMode === 'array' ? (
+          array.map((value, idx) => (
+            <span
+              key={idx}
+              className={`flex justify-center items-center w-12 h-12 border border-gray-500 rounded-md mx-1 text-lg font-bold text-black ${idx === pivotIndex ? 'bg-red-500' : idx === compareIndex ? 'bg-yellow-500' : 'bg-gray-200'}`}
+            >
+              {value}
+            </span>
+          ))
+        ) : (
+          <div className="flex items-end space-x-2 h-40 mt-20 ml-36">
+            {array.map((value, idx) => (
+              <div key={idx} className="flex flex-col items-center ">
+                <span className="text-lg font-bold mb-1">{value}</span>
+                <div
+                  className={`w-8 bg-gray-400 ${idx === pivotIndex ? 'bg-red-500' : idx === compareIndex ? 'bg-yellow-500' : 'bg-gray-400'}`}
+                  style={{ height: `${value * 2}px`, padding: '4px' }}
+                ></div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       <div className="flex space-x-2">
         <Button onClick={resetArray} disabled={sorting}>
