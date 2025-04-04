@@ -1,7 +1,4 @@
-'use client'
-
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import Button from "./Button";
 
 const QuickSortVisualizer = () => {
@@ -40,12 +37,12 @@ const QuickSortVisualizer = () => {
         i++;
         [arr[i], arr[j]] = [arr[j], arr[i]];
         setArray([...arr]);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 500));
       }
     }
     [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
     setArray([...arr]);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     setPivotIndex(null);
     setCompareIndex(null);
     return i + 1;
@@ -61,16 +58,14 @@ const QuickSortVisualizer = () => {
 
   return (
     <div className="flex flex-col items-center space-y-4">
-      <div className="flex space-x-1 items-end">
+      <div className="flex justify-center items-center border-2 border-gray-400 p-4 rounded-lg">
         {array.map((value, idx) => (
-          <div key={idx} className="flex flex-col items-center">
-            <span className="text-sm mb-1">{value}</span>
-            <motion.div
-              className={`w-6 ${idx === pivotIndex ? 'bg-red-500' : idx === compareIndex ? 'bg-yellow-500' : 'bg-blue-500'}`}
-              style={{ height: `${value * 3}px` }}
-              layout
-            />
-          </div>
+          <span
+            key={idx}
+            className={`flex justify-center items-center w-12 h-12 border border-gray-500 rounded-md mx-1 text-lg font-bold text-black ${idx === pivotIndex ? 'bg-red-500' : idx === compareIndex ? 'bg-yellow-500' : 'bg-gray-200'}`}
+          >
+            {value}
+          </span>
         ))}
       </div>
       <div className="flex space-x-2">

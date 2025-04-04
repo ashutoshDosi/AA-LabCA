@@ -18,7 +18,7 @@ export default function Home() {
             16010423034: Gargi Joshi
           </p>
         </div>
-        <div className="flex flex-col items-center md:ml-72 sm:ml-24">
+        <div className="flex flex-col items-center ml-36">
         <QuickSortVisualizer />
         </div>
         <div>
@@ -31,6 +31,17 @@ export default function Home() {
             3. Recursively apply the same process to the sub-arrays. <br />
             4. Combine the sorted sub-arrays to get the final sorted array. <br />
             5. Repeat the process until the entire array is sorted. <br />
+          </p>
+        </div>
+
+        <div>
+          <h1 className="text-4xl font-bold text-center">
+            Analysis
+          </h1>
+          <p className="text-lg">
+            1. Worst Case: O(n<sup>2</sup>) - occurs when the pivot is always the smallest or largest element. <br />
+            2. Average Case: O(n log n) - occurs when the pivot divides the array into two equal halves. <br />
+            3. Best Case: O(n log n) - occurs when the pivot divides the array into two equal halves. <br />
           </p>
         </div>
       </main>
